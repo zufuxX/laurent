@@ -115,23 +115,6 @@ h1.hero-title .blue{color:var(--primary)}
 .signals-grid .shot{aspect-ratio:9/16;border-radius:10px;overflow:hidden;background:#0a0a0a;background-size:cover;background-position:center;border:1px solid var(--border);box-shadow:0 8px 24px rgba(1,13,18,.06);transition:transform .25s}
 .signals-grid .shot:hover{transform:translateY(-4px) scale(1.02);z-index:2}
 
-/* ---------- WHERE I COME FROM (before/after) ---------- */
-.journey{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:center;max-width:1080px;margin:0 auto}
-.journey-side{display:flex;flex-direction:column;gap:14px}
-.journey-side .pic{aspect-ratio:4/5;border-radius:14px;background-size:cover;background-position:center;background-color:#1a1a1a;box-shadow:0 14px 36px rgba(1,13,18,.12);overflow:hidden;position:relative}
-.journey-side.before .pic{filter:saturate(.65) contrast(.95)}
-.journey-side .pic .tag{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.7);color:#fff;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
-.journey-side .label-row{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#fff;border-radius:12px;border:1px solid var(--border);font-weight:800;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-.journey-side.after .label-row{color:var(--primary);border-color:var(--primary);background:var(--bg-blue)}
-.journey-arrow{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--primary);color:#fff;box-shadow:0 14px 30px rgba(30,64,255,.3);flex-shrink:0}
-.journey-arrow svg{width:28px;height:28px}
-.journey-quote{max-width:780px;margin:48px auto 0;text-align:center;padding:32px;border-left:4px solid var(--primary);background:var(--bg-blue);border-radius:14px}
-.journey-quote p{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.5;color:var(--text);font-weight:400}
-@media (max-width:760px){
-  .journey{grid-template-columns:1fr;gap:20px}
-  .journey-arrow{transform:rotate(90deg);margin:0 auto;width:52px;height:52px}
-}
-
 /* ---------- LIFESTYLE GALLERY ---------- */
 .lifestyle{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,180px);gap:14px}
 .lifestyle .tile{border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-color:#1a1a1a;position:relative;transition:transform .3s}
@@ -845,8 +828,8 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
       <p>Hard work paid off &mdash; supercars, dream home, family life between Nice and Dubai. But the journey matters more than the destination. Get the same edge I do, hands-free, through my automated trading bot.</p>
     </div>
     <div class="lifestyle">
-      <div class="tile big" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/11.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/12.jpg')"></div>
+      <div class="tile big" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/4-1.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/5-1.jpg')"></div>
       <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/4.jpg')"></div>
       <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/5.jpg')"></div>
       <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/13.jpg')"></div>
@@ -860,43 +843,8 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   </div>
 </section>
 
-<!-- WHERE I COME FROM (before / after) -->
-<section class="block alt">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow"><span class="pip"></span>Where I come from</div>
-      <h2>From a kid with little hope, to <span class="blue">who I am today.</span></h2>
-      <p>I&rsquo;m that young French-Portuguese who left school early, unsure of what lay ahead. I changed the game. I dove into trading, committed fully, learned every aspect &mdash; and it paid off big time.</p>
-    </div>
-
-    <div class="journey">
-      <div class="journey-side before">
-        <div class="label-row">Then</div>
-        <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/4-1.jpg')"><span class="tag">Kid from Nice</span></div>
-        <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/5-1.jpg')"><span class="tag">Growing up</span></div>
-        <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/6-1.jpg')"><span class="tag">Before trading</span></div>
-      </div>
-
-      <div class="journey-arrow" aria-label="To">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-
-      <div class="journey-side after">
-        <div class="label-row">Now</div>
-        <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/1-1-1.jpg')"><span class="tag">Multi-millionaire</span></div>
-        <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/2-1-1.jpg')"><span class="tag">Dubai life</span></div>
-        <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/3-1.jpg')"><span class="tag">Family of 6</span></div>
-      </div>
-    </div>
-
-    <div class="journey-quote">
-      <p>&ldquo;At 25, I became the best version of myself &mdash; a multi-millionaire, with my amazing wife and four kids. From a kid with little hope to who I am today, I&rsquo;m proud of every step. With determination, anyone can transform their life. That&rsquo;s why I built my automated trading bot &mdash; so anyone, anywhere, can get the same edge I do, completely hands-free.&rdquo;</p>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
-<section class="block" id="faq">
+<section class="block alt" id="faq">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow"><span class="pip"></span>FAQ</div>
