@@ -36,6 +36,24 @@ ASSETS=(
 
 echo "==> Working dir: $(pwd)"
 
+# 0) If a WordPress install is present, move it aside (do not delete)
+if [ -f wp-config.php ] || [ -f wp-login.php ] || [ -d wp-admin ] || [ -d wp-includes ]; then
+  BACKUP_DIR="_wp_backup_$(date +%Y%m%d_%H%M%S)"
+  echo "==> WordPress detected. Moving existing files to ${BACKUP_DIR}/ ..."
+  mkdir "$BACKUP_DIR"
+  # Move every entry in cwd into the backup, except the script itself and the backup dir
+  shopt -s dotglob nullglob
+  for entry in *; do
+    case "$entry" in
+      "$BACKUP_DIR"|setup-ionos.sh|_wp_backup_*) continue ;;
+    esac
+    mv -- "$entry" "$BACKUP_DIR/"
+  done
+  shopt -u dotglob nullglob
+  echo "    Backup created. Once the new site is verified, remove it with:"
+  echo "    rm -rf ${BACKUP_DIR}"
+fi
+
 # 1) Download and extract the site tarball
 echo "==> Downloading site from GitHub (${BRANCH})..."
 curl -fL --retry 4 --retry-delay 2 -o /tmp/laurent-site.tgz "$TARBALL_URL"
