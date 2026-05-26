@@ -86,12 +86,15 @@ h1.hero-title .blue{color:var(--primary)}
 .hero-video-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(1.25)}}
 
-/* ---------- PRESS ---------- */
-.press{padding:42px 0;background:var(--bg-soft);border-block:1px solid var(--border-soft)}
-.press .label{text-align:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:24px;font-weight:700}
-.press-logos{display:flex;align-items:center;justify-content:space-around;gap:30px;flex-wrap:wrap}
-.press-logos .item{font-weight:800;color:#5b6470;font-size:18px;letter-spacing:-.3px;opacity:.85;font-family:Georgia,serif}
-.press-logos .item.bold{font-family:var(--sans);letter-spacing:-1px}
+/* ---------- PRESS (marquee, full bleed) ---------- */
+.press{padding:48px 0 56px;background:var(--bg-soft);border-block:1px solid var(--border-soft);overflow:hidden}
+.press .label{text-align:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:28px;font-weight:700}
+.press-marquee{position:relative;overflow:hidden;mask-image:linear-gradient(to right,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%)}
+.press-track{display:flex;align-items:center;gap:64px;width:max-content;animation:press-scroll 38s linear infinite}
+.press-track:hover{animation-play-state:paused}
+.press-track img{height:38px;width:auto;opacity:.7;filter:grayscale(100%);transition:opacity .2s,filter .2s}
+.press-track img:hover{opacity:1;filter:grayscale(0)}
+@keyframes press-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- ARTICLES / SEEN IN ---------- */
 .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -409,18 +412,34 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   </div>
 </section>
 
-<!-- PRESS LOGOS -->
+<!-- PRESS LOGOS (auto-scrolling marquee) -->
 <section class="press">
   <div class="container">
     <p class="label">As seen on</p>
-    <div class="press-logos">
-      <div class="item">Yahoo&nbsp;Finance</div>
-      <div class="item bold">Benzinga</div>
-      <div class="item">USA TODAY</div>
-      <div class="item bold">MSN</div>
-      <div class="item">Investing.com</div>
-      <div class="item bold">GeekWire</div>
-      <div class="item">Ritz Herald</div>
+  </div>
+  <div class="press-marquee">
+    <div class="press-track">
+      <img src="assets/press/yahoo-finance-logo-300x105.png" alt="Yahoo Finance">
+      <img src="assets/press/benzinga-logo-300x105.png" alt="Benzinga">
+      <img src="assets/press/usatoday-logo-300x105.png" alt="USA Today">
+      <img src="assets/press/msn-logo-ny-300x105.png" alt="MSN">
+      <img src="assets/press/investing-logo-300x105.png" alt="Investing.com">
+      <img src="assets/press/geekwire-logo-300x105.png" alt="GeekWire">
+      <img src="assets/press/ritz-logo-1-300x105.png" alt="Ritz Herald">
+      <img src="assets/press/the-daily-scanner-300x105.png" alt="The Daily Scanner">
+      <img src="assets/press/usinsider-logo-300x105.png" alt="US Insider">
+      <img src="assets/press/texh-bullion-logo-300x105.png" alt="Tech Bullion">
+      <!-- duplicate for seamless loop -->
+      <img src="assets/press/yahoo-finance-logo-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/benzinga-logo-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/usatoday-logo-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/msn-logo-ny-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/investing-logo-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/geekwire-logo-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/ritz-logo-1-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/the-daily-scanner-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/usinsider-logo-300x105.png" alt="" aria-hidden="true">
+      <img src="assets/press/texh-bullion-logo-300x105.png" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
