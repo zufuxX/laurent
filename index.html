@@ -93,6 +93,39 @@ h1.hero-title .blue{color:var(--primary)}
 .press-logos .item{font-weight:800;color:#5b6470;font-size:18px;letter-spacing:-.3px;opacity:.85;font-family:Georgia,serif}
 .press-logos .item.bold{font-family:var(--sans);letter-spacing:-1px}
 
+/* ---------- ARTICLES / SEEN IN ---------- */
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.article-card{display:block;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--border);box-shadow:0 2px 8px rgba(1,13,18,.04);transition:transform .25s,box-shadow .25s;color:inherit}
+.article-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(1,13,18,.12);border-color:var(--primary)}
+.article-card .thumb{aspect-ratio:16/9;background:#1a1a1a;background-size:cover;background-position:center;position:relative}
+.article-card .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 50%)}
+.article-card .source{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.95);padding:5px 10px;border-radius:6px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text);z-index:2}
+.article-card .body{padding:20px 22px 22px}
+.article-card h3{font-size:17px;font-weight:800;line-height:1.3;letter-spacing:-.3px;color:var(--text);margin-bottom:8px}
+.article-card p{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:14px}
+.article-card .read{color:var(--primary);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:1.2px}
+.article-card .read svg{transition:transform .2s}
+.article-card:hover .read svg{transform:translateX(3px)}
+
+/* ---------- SIGNALS (whatsapp screenshots) ---------- */
+.signals-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;max-width:1080px;margin:0 auto}
+.signals-grid .shot{aspect-ratio:9/16;border-radius:10px;overflow:hidden;background:#0a0a0a;background-size:cover;background-position:center;border:1px solid var(--border);box-shadow:0 8px 24px rgba(1,13,18,.06);transition:transform .25s}
+.signals-grid .shot:hover{transform:translateY(-4px) scale(1.02);z-index:2}
+
+/* ---------- LIFESTYLE GALLERY ---------- */
+.lifestyle{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,180px);gap:14px}
+.lifestyle .tile{border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-color:#1a1a1a;position:relative;transition:transform .3s}
+.lifestyle .tile:hover{transform:scale(1.02);z-index:2}
+.lifestyle .tile.big{grid-column:span 2;grid-row:span 2}
+.lifestyle .tile.tall{grid-row:span 2}
+@media (max-width:760px){
+  .lifestyle{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,140px)}
+  .lifestyle .tile.big{grid-column:span 2;grid-row:span 1}
+  .lifestyle .tile.tall{grid-row:span 1}
+  .signals-grid{grid-template-columns:repeat(3,1fr)}
+  .articles-grid{grid-template-columns:1fr}
+}
+
 /* ---------- SECTIONS ---------- */
 section.block{padding:90px 0;position:relative}
 section.block.alt{background:var(--bg-soft)}
@@ -359,7 +392,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   </div>
 </section>
 
-<!-- PRESS -->
+<!-- PRESS LOGOS -->
 <section class="press">
   <div class="container">
     <p class="label">As seen on</p>
@@ -375,8 +408,57 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   </div>
 </section>
 
+<!-- ARTICLES / SEEN IN -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>Seen in</div>
+      <h2>One of the most followed <span class="blue">families.</span></h2>
+      <p>Laurent and his family are featured on national TV, in international press, and on streaming platforms. The same trader you see on screen runs the automated trading bot every single day.</p>
+    </div>
+    <div class="articles-grid">
+      <a href="https://www.imdb.com/title/tt13023818/?ref_=ttep_ep34" class="article-card" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/MV5BMWNlN2JlZjMtNDIwNy00MmMyLWFjMTAtMmRkYTMwYjAyNTM2XkEyXkFqcGdeQXVyMTA1NTMwNTg2._V1_FMjpg_UX2160_-1024x576.jpg')">
+          <span class="source">IMDb</span>
+        </div>
+        <div class="body">
+          <h3>JLC Family &mdash; Featured Series</h3>
+          <p>Laurent and Jazz Correia are featured in the JLC Family TV series, streamed internationally.</p>
+          <span class="read">Watch on IMDb
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+      <a href="https://www.tf1.fr/tfx/jlc-family-lincroyable-ete-de-jazz-et-laurent" class="article-card" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/1.jpg')">
+          <span class="source">TF1 / TFX</span>
+        </div>
+        <div class="body">
+          <h3>JLC Family &mdash; L&rsquo;incroyable &eacute;t&eacute; de Jazz et Laurent</h3>
+          <p>National French TV documentary following Laurent, Jazz and their four kids during summer.</p>
+          <span class="read">Watch on TF1
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+      <a href="https://thelosangelestribune.com/2022/05/02/the-jlc-family-jazz-and-laurents-big-move-to-los-angeles/" class="article-card" target="_blank" rel="noopener">
+        <div class="thumb" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/2.jpg')">
+          <span class="source">LA Tribune</span>
+        </div>
+        <div class="body">
+          <h3>The JLC Family &mdash; Jazz and Laurent&rsquo;s Big Move</h3>
+          <p>Featured in The Los Angeles Tribune covering Laurent and Jazz&rsquo;s move and trading journey.</p>
+          <span class="read">Read article
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- INTERVIEWS / VIDEO GRID -->
-<section class="block" id="interviews">
+<section class="block alt" id="interviews">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow"><span class="pip"></span>The proof is in the results</div>
@@ -477,6 +559,28 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
           <source src="https://laurent-billionaire.com/wp-content/uploads/2024/09/9049707018635018892.mp4" type="video/mp4">
         </video>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY SIGNALS (WhatsApp screenshots) -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>Daily signals 100% free</div>
+      <h2>Get powerful signals <span class="blue">delivered daily.</span></h2>
+      <p>Every day, my automated trading bot pushes live signals to my private Telegram channel. Real entries, real exits, fully documented &mdash; mirrored by the bot on your account in real time.</p>
+    </div>
+    <div class="signals-grid">
+      <div class="shot" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-02-29-at-19.05.19.jpeg')"></div>
+      <div class="shot" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-02-29-at-19.05.21.jpeg')"></div>
+      <div class="shot" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-02-29-at-19.05.21-1.jpeg')"></div>
+      <div class="shot" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-02-29-at-19.05.22.jpeg')"></div>
+      <div class="shot" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-02-29-at-19.05.22-1.jpeg')"></div>
+      <div class="shot" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-02-29-at-19.05.23.jpeg')"></div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://t.me/therealbillio" class="btn btn-primary">Get the signals on Telegram</a>
     </div>
   </div>
 </section>
@@ -696,8 +800,32 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   </div>
 </section>
 
+<!-- LIFESTYLE GALLERY -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>Discover my lifestyle</div>
+      <h2>Where I come from, <span class="blue">where I&rsquo;m going.</span></h2>
+      <p>Hard work paid off &mdash; supercars, dream home, family life between Nice and Dubai. But the journey matters more than the destination. Get the same edge I do, hands-free, through my automated trading bot.</p>
+    </div>
+    <div class="lifestyle">
+      <div class="tile big" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/11.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/12.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/4.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/5.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/13.jpg')"></div>
+    </div>
+    <div class="lifestyle" style="margin-top:14px;grid-template-rows:repeat(1,200px)">
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/3.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/6.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/1-1.jpg')"></div>
+      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/2-1.jpg')"></div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
-<section class="block" id="faq">
+<section class="block alt" id="faq">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow"><span class="pip"></span>FAQ</div>
