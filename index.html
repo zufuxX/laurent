@@ -22,7 +22,7 @@
   --border-soft:#eef0f3;
   --green:#00b67a;
   --red:#dd0031;
-  --container:1180px;
+  --container:1320px;
   --sans:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --serif:'Merriweather',Georgia,serif;
 }
@@ -58,8 +58,8 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);ba
 .nav-burger{display:none;font-size:24px}
 
 /* ---------- HERO ---------- */
-.hero{padding:72px 0 80px;background:linear-gradient(180deg,#fff 0%,#fafbff 100%)}
-.hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero{padding:60px 0 80px;background:linear-gradient(180deg,#fff 0%,#fafbff 100%)}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 h1.hero-title{font-size:clamp(36px,4.6vw,58px);line-height:1.05;font-weight:800;letter-spacing:-1.2px;margin-bottom:24px;color:var(--text)}
 h1.hero-title .blue{color:var(--primary)}
 .hero-sub{font-size:18px;color:var(--muted);max-width:580px;margin-bottom:28px;line-height:1.6}
@@ -75,7 +75,9 @@ h1.hero-title .blue{color:var(--primary)}
 .trust-inline .stars{color:var(--green);letter-spacing:2px;font-size:15px}
 
 /* hero video */
-.hero-video{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(1,13,18,.12);background:#0a0a0a;aspect-ratio:9/16;max-width:420px;margin-left:auto}
+.hero-text{order:2}
+.hero-video{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(1,13,18,.12);background:#0a0a0a;aspect-ratio:16/9;width:100%;order:1}
+@media (max-width:1000px){.hero-text{order:1}.hero-video{order:2}}
 .hero-video video{width:100%;height:100%;object-fit:cover;display:block}
 .hero-video .play-big{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.18);transition:background .2s;cursor:pointer;z-index:2}
 .hero-video .play-big.hidden{display:none}
@@ -86,15 +88,24 @@ h1.hero-title .blue{color:var(--primary)}
 .hero-video-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(1.25)}}
 
-/* ---------- PRESS (marquee, full bleed) ---------- */
-.press{padding:48px 0 56px;background:var(--bg-soft);border-block:1px solid var(--border-soft);overflow:hidden}
-.press .label{text-align:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:28px;font-weight:700}
-.press-marquee{position:relative;overflow:hidden;mask-image:linear-gradient(to right,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%)}
-.press-track{display:flex;align-items:center;gap:64px;width:max-content;animation:press-scroll 38s linear infinite}
+/* ---------- PRESS (marquee, full bleed, chip cards like fred) ---------- */
+.press{padding:36px 0 48px;background:#fff;overflow:hidden}
+.press .container{position:relative}
+.press .label{display:inline-block;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;font-weight:700;position:relative;padding-left:4px}
+.press .label::after{content:"";position:absolute;left:90px;top:50%;width:30px;height:30px;border-left:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg) translateY(-10px)}
+.press-marquee{position:relative;overflow:hidden;mask-image:linear-gradient(to right,transparent 0,#000 60px,#000 calc(100% - 60px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 60px,#000 calc(100% - 60px),transparent 100%)}
+.press-track{display:flex;align-items:center;gap:18px;width:max-content;animation:press-scroll 42s linear infinite;padding:6px 0}
 .press-track:hover{animation-play-state:paused}
-.press-track img{height:38px;width:auto;opacity:.7;filter:grayscale(100%);transition:opacity .2s,filter .2s}
-.press-track img:hover{opacity:1;filter:grayscale(0)}
+.press-track .chip{flex:0 0 auto;display:flex;align-items:center;justify-content:center;height:96px;width:240px;padding:18px 28px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 2px 8px rgba(1,13,18,.03);transition:border-color .2s,box-shadow .2s}
+.press-track .chip:hover{border-color:var(--primary);box-shadow:0 10px 24px rgba(30,64,255,.08)}
+.press-track .chip img{height:42px;width:auto;max-width:180px;object-fit:contain;opacity:.85;filter:grayscale(100%);transition:opacity .2s,filter .2s}
+.press-track .chip:hover img{opacity:1;filter:grayscale(0)}
 @keyframes press-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:760px){
+  .press-track .chip{height:80px;width:180px;padding:12px 18px}
+  .press-track .chip img{height:32px}
+  .press .label::after{display:none}
+}
 
 /* ---------- ARTICLES / SEEN IN ---------- */
 .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -285,7 +296,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
 @media (max-width:1000px){
   .hero .container,.howfree,.join-grid,.about,.cert{grid-template-columns:1fr;gap:40px}
   .cert{padding:40px 28px}
-  .hero-video{max-width:380px;margin:0 auto}
+  .hero-video{max-width:560px;margin:0 auto}
   .video-grid{grid-template-columns:repeat(3,1fr)}
   .compare{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
@@ -340,7 +351,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div>
+    <div class="hero-text">
       <div class="eyebrow"><span class="pip"></span>AI-powered automated trading</div>
       <h1 class="hero-title">Become Profitable in the Financial Markets with my <span class="blue">Automated Trading Bot</span></h1>
       <p class="hero-sub">
@@ -402,27 +413,27 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   </div>
   <div class="press-marquee">
     <div class="press-track">
-      <img src="assets/press/yahoo-finance-logo-300x105.png" alt="Yahoo Finance">
-      <img src="assets/press/benzinga-logo-300x105.png" alt="Benzinga">
-      <img src="assets/press/usatoday-logo-300x105.png" alt="USA Today">
-      <img src="assets/press/msn-logo-ny-300x105.png" alt="MSN">
-      <img src="assets/press/investing-logo-300x105.png" alt="Investing.com">
-      <img src="assets/press/geekwire-logo-300x105.png" alt="GeekWire">
-      <img src="assets/press/ritz-logo-1-300x105.png" alt="Ritz Herald">
-      <img src="assets/press/the-daily-scanner-300x105.png" alt="The Daily Scanner">
-      <img src="assets/press/usinsider-logo-300x105.png" alt="US Insider">
-      <img src="assets/press/texh-bullion-logo-300x105.png" alt="Tech Bullion">
+      <div class="chip"><img src="assets/press/yahoo-finance-logo-300x105.png" alt="Yahoo Finance"></div>
+      <div class="chip"><img src="assets/press/benzinga-logo-300x105.png" alt="Benzinga"></div>
+      <div class="chip"><img src="assets/press/usatoday-logo-300x105.png" alt="USA Today"></div>
+      <div class="chip"><img src="assets/press/msn-logo-ny-300x105.png" alt="MSN"></div>
+      <div class="chip"><img src="assets/press/investing-logo-300x105.png" alt="Investing.com"></div>
+      <div class="chip"><img src="assets/press/geekwire-logo-300x105.png" alt="GeekWire"></div>
+      <div class="chip"><img src="assets/press/ritz-logo-1-300x105.png" alt="Ritz Herald"></div>
+      <div class="chip"><img src="assets/press/the-daily-scanner-300x105.png" alt="The Daily Scanner"></div>
+      <div class="chip"><img src="assets/press/usinsider-logo-300x105.png" alt="US Insider"></div>
+      <div class="chip"><img src="assets/press/texh-bullion-logo-300x105.png" alt="Tech Bullion"></div>
       <!-- duplicate for seamless loop -->
-      <img src="assets/press/yahoo-finance-logo-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/benzinga-logo-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/usatoday-logo-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/msn-logo-ny-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/investing-logo-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/geekwire-logo-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/ritz-logo-1-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/the-daily-scanner-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/usinsider-logo-300x105.png" alt="" aria-hidden="true">
-      <img src="assets/press/texh-bullion-logo-300x105.png" alt="" aria-hidden="true">
+      <div class="chip" aria-hidden="true"><img src="assets/press/yahoo-finance-logo-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/benzinga-logo-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/usatoday-logo-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/msn-logo-ny-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/investing-logo-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/geekwire-logo-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/ritz-logo-1-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/the-daily-scanner-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/usinsider-logo-300x105.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img src="assets/press/texh-bullion-logo-300x105.png" alt=""></div>
     </div>
   </div>
 </section>
