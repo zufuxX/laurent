@@ -164,16 +164,16 @@ h1.hero-title .blue{color:var(--primary)}
 .signals-grid .shot{aspect-ratio:9/16;border-radius:10px;overflow:hidden;background:#0a0a0a;background-size:cover;background-position:center;border:1px solid var(--border);box-shadow:0 8px 24px rgba(1,13,18,.06);transition:transform .25s}
 .signals-grid .shot:hover{transform:translateY(-4px) scale(1.02);z-index:2}
 
-/* ---------- LIFESTYLE GALLERY ---------- */
-.lifestyle{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,180px);gap:14px}
-.lifestyle .tile{border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-color:#1a1a1a;position:relative;transition:transform .3s}
-.lifestyle .tile:hover{transform:scale(1.02);z-index:2}
-.lifestyle .tile.big{grid-column:span 2;grid-row:span 2}
-.lifestyle .tile.tall{grid-row:span 2}
-@media (max-width:760px){
-  .lifestyle{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,140px)}
-  .lifestyle .tile.big{grid-column:span 2;grid-row:span 1}
-  .lifestyle .tile.tall{grid-row:span 1}
+/* ---------- LIFESTYLE GALLERY (masonry, no crop) ---------- */
+.lifestyle{columns:4;column-gap:14px}
+.lifestyle .tile{display:block;break-inside:avoid;margin-bottom:14px;border-radius:14px;overflow:hidden;background:#f1f1f1;transition:transform .25s,box-shadow .25s;position:relative}
+.lifestyle .tile:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 14px 30px rgba(1,13,18,.14)}
+.lifestyle .tile img{width:100%;height:auto;display:block}
+@media (max-width:980px){
+  .lifestyle{columns:3}
+}
+@media (max-width:640px){
+  .lifestyle{columns:2}
   .signals-grid{grid-template-columns:repeat(3,1fr)}
   .articles-grid{grid-template-columns:1fr}
 }
@@ -999,17 +999,17 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
       <p>Hard work paid off &mdash; supercars, dream home, family life between Nice and Dubai. But the journey matters more than the destination. Get the same edge I do, hands-free, through my automated trading bot.</p>
     </div>
     <div class="lifestyle">
-      <div class="tile big" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/4-1.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/5-1.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/4.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/5.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/13.jpg')"></div>
-    </div>
-    <div class="lifestyle" style="margin-top:14px;grid-template-rows:repeat(1,200px)">
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/3.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/6.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/1-1.jpg')"></div>
-      <div class="tile" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/2-1.jpg')"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/4-1.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/5-1.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/4.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/5.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/13.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/3.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/6.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/1-1.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/2-1.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/11.jpg" alt="" loading="lazy"></div>
+      <div class="tile"><img src="https://laurent-billionaire.com/wp-content/uploads/2024/09/12.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1216,7 +1216,7 @@ document.querySelectorAll('.vid-card').forEach(card=>{
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
 
   // Bind to elements
-  document.querySelectorAll('[data-lightbox], .lifestyle .tile, .signals-grid .shot, .join-photo .pic, .about-photo img').forEach(el=>{
+  document.querySelectorAll('[data-lightbox], .lifestyle .tile img, .signals-grid .shot, .join-photo .pic, .about-photo img').forEach(el=>{
     el.style.cursor = 'zoom-in';
     el.addEventListener('click', e=>{
       e.preventDefault();
