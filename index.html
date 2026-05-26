@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laurent Billionaire — My AI-powered automated trading bot</title>
-<meta name="description" content="Laurent Billionaire's fully automated trading bot. AI-powered automated trading, completely hands-free. 80,000+ members copy the bot every day. 100% free.">
+<title>Billionaire — My AI-powered automated trading bot</title>
+<meta name="description" content="Billionaire's fully automated trading bot. AI-powered automated trading, completely hands-free. 80,000+ members copy the bot every day. 100% free.">
+<link rel="icon" href="assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&family=Merriweather:ital,wght@1,400&display=swap" rel="stylesheet">
@@ -51,7 +52,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-soft)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--text)}
-.logo .mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#3a5cff);display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;letter-spacing:0}
+.logo .mark{width:44px;height:44px;display:grid;place-items:center;background:transparent}
+.logo .mark img{width:44px;height:44px;display:block}
 .nav ul{list-style:none;display:flex;gap:32px;align-items:center}
 .nav ul a{color:var(--text);font-size:15px;font-weight:600;transition:color .2s}
 .nav ul a:hover{color:var(--primary)}
@@ -106,6 +108,42 @@ h1.hero-title .blue{color:var(--primary)}
   .press-track .chip img{height:32px}
   .press .label::after{display:none}
 }
+
+/* ---------- TRUSTPILOT REVIEWS ---------- */
+.tpilot{background:var(--bg-blue);padding:48px 0 56px;border-block:1px solid var(--border-soft)}
+.tpilot-head{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.tpilot-head .tp-logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--text)}
+.tpilot-head .tp-logo svg{color:var(--green)}
+.tpilot-head .tp-stars{display:inline-flex;gap:4px}
+.tpilot-head .tp-stars span{width:24px;height:24px;background:var(--green);display:grid;place-items:center;color:#fff;font-size:14px;border-radius:2px}
+.tpilot-head .tp-stars span.half{background:linear-gradient(to right,var(--green) 50%,#dcdfe3 50%)}
+.tpilot-head .tp-rating{font-size:14px;color:var(--text);font-weight:600}
+.tpilot-head .tp-rating strong{font-weight:800}
+.tpilot-marquee{overflow:hidden;mask-image:linear-gradient(to right,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%)}
+.tpilot-track{display:flex;gap:18px;width:max-content;animation:tp-scroll 70s linear infinite;padding:8px 0}
+.tpilot-track:hover{animation-play-state:paused}
+.review{flex:0 0 320px;background:#fff;border-radius:14px;border:1px solid var(--border);padding:20px;box-shadow:0 4px 14px rgba(1,13,18,.04);display:flex;flex-direction:column;gap:10px}
+.review .top{display:flex;align-items:center;gap:12px}
+.review .ava{width:38px;height:38px;border-radius:50%;background:var(--bg-blue);display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--primary);flex-shrink:0}
+.review .who{font-size:14px;font-weight:700;color:var(--text);line-height:1.2}
+.review .who small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:2px}
+.review .stars{display:flex;gap:2px}
+.review .stars span{width:18px;height:18px;background:var(--green);display:grid;place-items:center;color:#fff;font-size:11px;border-radius:2px}
+.review h4{font-size:15px;font-weight:800;color:var(--text);letter-spacing:-.2px}
+.review p{font-size:13px;line-height:1.55;color:var(--muted)}
+.review .date{font-size:11px;color:var(--muted);margin-top:auto;padding-top:8px;border-top:1px solid var(--border-soft);font-weight:600}
+@keyframes tp-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:760px){
+  .review{flex:0 0 280px;padding:16px}
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;animation:lb-in .15s ease}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96%;max-height:96vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.5);object-fit:contain}
+.lightbox .close{position:absolute;top:20px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.95);color:var(--text);display:grid;place-items:center;cursor:pointer;border:0;font-size:22px}
+@keyframes lb-in{from{opacity:0}to{opacity:1}}
+[data-lightbox]{cursor:zoom-in}
 
 /* ---------- ARTICLES / SEEN IN ---------- */
 .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -294,7 +332,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1000px){
-  .hero .container,.howfree,.join-grid,.about,.cert{grid-template-columns:1fr;gap:40px}
+  .hero .container,.howfree,.join-grid,.about,.cert{grid-template-columns:1fr;gap:32px}
   .cert{padding:40px 28px}
   .hero-video{max-width:560px;margin:0 auto}
   .video-grid{grid-template-columns:repeat(3,1fr)}
@@ -304,6 +342,23 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   .nav-burger{display:block}
   section.block,.join,.hero{padding:60px 0}
 }
+/* Mobile: CTA above the fold */
+@media (max-width:760px){
+  .hero{padding:24px 0 40px}
+  .hero .container{gap:20px}
+  .hero-text{display:flex;flex-direction:column}
+  .hero-text .eyebrow{order:1;margin-bottom:10px}
+  .hero-text h1.hero-title{order:2;font-size:30px;line-height:1.08;margin-bottom:12px;letter-spacing:-.8px}
+  .hero-text .hero-sub{order:3;font-size:15px;margin-bottom:18px}
+  .hero-text .hero-cta-row{order:4;margin-bottom:22px}
+  .hero-text .hero-stat{order:5;padding:12px 16px;margin-bottom:18px}
+  .hero-text .hero-bullets{order:6;margin-bottom:0;border-top:0}
+  .hero-text .hero-bullets li{padding:10px 0;font-size:14px}
+  .hero-cta-row .btn-lg{padding:14px 22px;font-size:15px;width:100%;justify-content:center}
+  .hero-cta-row{flex-direction:column-reverse;align-items:stretch;gap:10px}
+  .trust-inline{justify-content:center}
+  .hero-video{max-width:100%;border-radius:14px}
+}
 @media (max-width:640px){
   .video-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .foot-grid{grid-template-columns:1fr}
@@ -311,7 +366,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
   .topbar .container{gap:10px}
   .interviews-banner .big{font-size:48px}
   .hero-stat{flex-direction:column;align-items:flex-start;gap:6px}
-  .hero-stat .num{font-size:32px}
+  .hero-stat .num{font-size:28px}
 }
 </style>
 </head>
@@ -334,8 +389,8 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
 <header class="site">
   <div class="container nav">
     <a href="#" class="logo">
-      <span class="mark">LB</span>
-      <span>Laurent Billionaire</span>
+      <span class="mark"><img src="assets/logo.svg" alt=""></span>
+      <span>Billionaire</span>
     </a>
     <ul>
       <li><a href="#how-free">How it&rsquo;s free?</a></li>
@@ -434,6 +489,111 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
       <div class="chip" aria-hidden="true"><img src="assets/press/the-daily-scanner-300x105.png" alt=""></div>
       <div class="chip" aria-hidden="true"><img src="assets/press/usinsider-logo-300x105.png" alt=""></div>
       <div class="chip" aria-hidden="true"><img src="assets/press/texh-bullion-logo-300x105.png" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTPILOT REVIEWS (under press) -->
+<section class="tpilot">
+  <div class="container">
+    <div class="tpilot-head">
+      <span class="tp-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Trustpilot
+      </span>
+      <span class="tp-stars" aria-label="4.7 out of 5">
+        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span class="half">&#9733;</span>
+      </span>
+      <span class="tp-rating">Our customers say <strong>Excellent</strong> &mdash; <strong>4.7 out of 5</strong> based on <u>417+ reviews</u></span>
+    </div>
+  </div>
+  <div class="tpilot-marquee">
+    <div class="tpilot-track">
+      <div class="review">
+        <div class="top">
+          <div class="ava">AF</div>
+          <div class="who">Aleksa Filipovic<small>RS &middot; 1 review</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>In less than 2 weeks</h4>
+        <p>In less than 2 weeks, I earned about &euro;85 at Laurent&rsquo;s with, let&rsquo;s say, weak bets. I can only imagine what would happen with bigger stakes &#9989;</p>
+        <div class="date">6 days ago</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">LO</div>
+          <div class="who">Lulu Omar<small>HK &middot; 1 review</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>Professional person and trade</h4>
+        <p>Professional person and trade. Very honest. The signals are precise and the team delivers what they promise.</p>
+        <div class="date">Aug 15, 2025</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">MG</div>
+          <div class="who">Mary Grace Roxanne<small>AE &middot; 2 reviews</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>More WINS!</h4>
+        <p>I am a newbie in trading and the guidelines set by Laurent under the Billionaire VIP are superb. Backed by Laurent and his solid team, I am very satisfied on their 24/7 feedback and online support. Kudos to the whole team.</p>
+        <div class="date">3 days ago</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">RW</div>
+          <div class="who">Ruru Waress<small>KW &middot; 2 reviews</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>Amazing team</h4>
+        <p>Amazing team. Very honest and supportive from a beginner to the expert trader. They never claim perfection. But from a 100% to 90% win rate weekly. Daily motivation will make you act and get inspired.</p>
+        <div class="date">Jul 15, 2025</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">AL</div>
+          <div class="who">Ali<small>AE &middot; 1 review</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>For everyone it is a genuine review</h4>
+        <p>For everyone it is a genuine review from my side. I started with minimum amount and within one month my portfolio is 30% increased. It is genuine platform &mdash; just calculate your risk according to your investment.</p>
+        <div class="date">Jul 18, 2025</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">FR</div>
+          <div class="who">Frank<small>NO &middot; 6 reviews</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>I cannot recommend Billio enough</h4>
+        <p>I cannot recommend Billio enough! I love this guy! I made 7,500 euros this week alone taking his signals. It&rsquo;s a no brainer! Thanks Laurent &#128591;</p>
+        <div class="date">Aug 13, 2025</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">DT</div>
+          <div class="who">Dezlan Taylor<small>BB &middot; 1 review</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>I took my first trade with Billionaire&hellip;</h4>
+        <p>I took my first trade with Billionaire signal. I made $100. It&rsquo;s a great experience.</p>
+        <div class="date">Jul 14, 2025</div>
+      </div>
+      <div class="review">
+        <div class="top">
+          <div class="ava">SH</div>
+          <div class="who">Shido<small>AE &middot; 2 reviews</small></div>
+        </div>
+        <div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <h4>Amazing Group and People</h4>
+        <p>Have been working with Laurent for a few months, all his signals are spot on. His guidance has helped us achieve our goal and freedom. Thank you for doing this for us!</p>
+        <div class="date">Jul 15, 2025</div>
+      </div>
+      <!-- duplicate for seamless loop -->
+      <div class="review" aria-hidden="true"><div class="top"><div class="ava">AF</div><div class="who">Aleksa Filipovic<small>RS &middot; 1 review</small></div></div><div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><h4>In less than 2 weeks</h4><p>In less than 2 weeks, I earned about &euro;85 at Laurent&rsquo;s with, let&rsquo;s say, weak bets.</p><div class="date">6 days ago</div></div>
+      <div class="review" aria-hidden="true"><div class="top"><div class="ava">LO</div><div class="who">Lulu Omar<small>HK &middot; 1 review</small></div></div><div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><h4>Professional person and trade</h4><p>Professional person and trade. Very honest. The signals are precise.</p><div class="date">Aug 15, 2025</div></div>
+      <div class="review" aria-hidden="true"><div class="top"><div class="ava">MG</div><div class="who">Mary Grace Roxanne<small>AE &middot; 2 reviews</small></div></div><div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><h4>More WINS!</h4><p>I am a newbie in trading and the guidelines set by Laurent under Billionaire VIP are superb.</p><div class="date">3 days ago</div></div>
+      <div class="review" aria-hidden="true"><div class="top"><div class="ava">RW</div><div class="who">Ruru Waress<small>KW &middot; 2 reviews</small></div></div><div class="stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div><h4>Amazing team</h4><p>Amazing team. Very honest and supportive from a beginner to the expert trader.</p><div class="date">Jul 15, 2025</div></div>
     </div>
   </div>
 </section>
@@ -684,7 +844,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
       <div class="join-photo">
         <div class="pic" style="background-image:url('https://laurent-billionaire.com/wp-content/uploads/2024/09/IMG_6855-Grande.jpeg')"></div>
         <div class="badge">
-          <div class="avatar">LB</div>
+          <div class="avatar" style="background:linear-gradient(135deg,#E8D082,#A98548);overflow:hidden;padding:6px"><img src="assets/logo.svg" alt="" style="width:100%;height:100%"></div>
           <div class="who">
             <strong>Laurent Correia</strong>
             <span>Founder &mdash; Nice / Dubai</span>
@@ -912,8 +1072,8 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
     <div class="foot-grid">
       <div>
         <div class="logo" style="margin-bottom:14px">
-          <span class="mark">LB</span>
-          <span>Laurent Billionaire</span>
+          <span class="mark"><img src="assets/logo.svg" alt=""></span>
+          <span>Billionaire</span>
         </div>
         <p>The free automated trading bot trusted by 80,000+ members worldwide. AI-powered, fully automated, completely hands-free.</p>
         <div class="foot-social">
@@ -961,7 +1121,7 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
       </div>
     </div>
     <div class="foot-bottom">
-      <div>&copy; <span id="yr">2026</span> Laurent Billionaire &mdash; All rights reserved.</div>
+      <div>&copy; <span id="yr">2026</span> Billionaire &mdash; All rights reserved.</div>
       <div><a href="#">Legal notice</a> &nbsp;&middot;&nbsp; <a href="#">Privacy</a> &nbsp;&middot;&nbsp; <a href="#">Terms</a></div>
     </div>
   </div>
@@ -1033,6 +1193,45 @@ document.querySelectorAll('.vid-card').forEach(card=>{
     video.removeAttribute('controls');
   });
 });
+
+// LIGHTBOX: click any element with data-lightbox or any lifestyle .tile / signal .shot
+(function(){
+  // Wrap lightbox elements
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = '<button class="close" aria-label="Close">&times;</button><img alt="">';
+  document.body.appendChild(lb);
+  const lbImg = lb.querySelector('img');
+  function open(src){
+    lbImg.src = src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+
+  // Bind to elements
+  document.querySelectorAll('[data-lightbox], .lifestyle .tile, .signals-grid .shot, .join-photo .pic, .about-photo img').forEach(el=>{
+    el.style.cursor = 'zoom-in';
+    el.addEventListener('click', e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      let src = el.getAttribute('data-lightbox');
+      if(!src && el.tagName==='IMG') src = el.src;
+      if(!src){
+        const bg = el.style.backgroundImage || getComputedStyle(el).backgroundImage;
+        const m = bg.match(/url\(["']?([^"')]+)["']?\)/);
+        if(m) src = m[1];
+      }
+      if(src) open(src);
+    });
+  });
+})();
 
 // Year
 document.getElementById('yr').textContent=new Date().getFullYear();
