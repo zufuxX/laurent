@@ -50,8 +50,10 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 /* ---------- HEADER ---------- */
 header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-soft)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:80px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--text)}
+.nav{display:flex;align-items:center;height:80px;gap:40px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--text);margin-right:auto;flex-shrink:0}
+.nav > .btn{margin-left:8px;flex-shrink:0}
+.nav ul{flex-shrink:0}
 .logo .mark{width:44px;height:44px;display:grid;place-items:center;background:transparent;flex-shrink:0}
 .logo .mark img{width:44px;height:44px;display:block;object-fit:contain}
 .nav ul{list-style:none;display:flex;gap:32px;align-items:center}
