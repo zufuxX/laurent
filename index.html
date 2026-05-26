@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laurent Billionaire — My trading bot, fully automated</title>
+<meta name="description" content="Laurent Billionaire's AI-powered automated trading bot. Completely hands-free trading experience. 100% free. Built for beginners, trusted by 80,000+ members worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070707;
+  --bg-soft:#0e0e0e;
+  --bg-card:#141414;
+  --border:#1f1f1f;
+  --border-soft:#2a2a2a;
+  --gold:#D8C07A;
+  --gold-2:#CEA860;
+  --red:#dd0031;
+  --green:#00b67a;
+  --text:#f5f5f5;
+  --muted:#9a9a9a;
+  --white:#fff;
+  --container:1180px;
+  --display:'Bebas Neue',Impact,sans-serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.container{max-width:var(--container);margin:0 auto;padding:0 20px}
+.display{font-family:var(--display);text-transform:uppercase;letter-spacing:1px;line-height:1.05;font-weight:400}
+.gold{color:var(--gold)}
+.red-underline{position:relative;display:inline-block}
+.red-underline::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:6px;background:var(--red);border-radius:2px}
+.strike{position:relative;display:inline-block;color:var(--gold)}
+.strike::after{content:"";position:absolute;top:50%;left:-4%;right:-4%;height:4px;background:var(--red);transform:rotate(-6deg);border-radius:2px}
+
+/* ---------- HEADER ---------- */
+.topbar{background:#000;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);padding:8px 0}
+.topbar .container{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.topbar .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+header.site{position:sticky;top:0;z-index:50;background:rgba(7,7,7,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:22px;letter-spacing:2px;color:var(--white)}
+.logo .mark{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-2));display:grid;place-items:center;color:#000;font-weight:800;font-family:var(--sans);font-size:14px}
+.nav ul{list-style:none;display:flex;gap:28px;align-items:center}
+.nav ul a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+.nav ul a:hover{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:8px;font-weight:600;font-size:15px;transition:transform .15s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn-gold{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);color:#000;box-shadow:0 4px 24px rgba(216,192,122,.25)}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(216,192,122,.4)}
+.btn-ghost{border:1px solid var(--border-soft);color:var(--white)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.nav-burger{display:none;font-size:24px;color:var(--white)}
+
+/* ---------- HERO ---------- */
+.hero{padding:80px 0 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(216,192,122,.12),transparent 60%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-300px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(221,0,49,.08),transparent 60%);pointer-events:none}
+.hero .container{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--gold);border-radius:999px;font-size:12px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px}
+.eyebrow .pip{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+h1.hero-title{font-family:var(--display);font-size:clamp(40px,5.4vw,68px);line-height:1.02;color:var(--white);text-transform:uppercase;margin-bottom:24px;letter-spacing:.5px}
+h1.hero-title .gold{display:inline}
+.hero-sub{font-size:18px;color:var(--muted);max-width:560px;margin-bottom:32px;line-height:1.6}
+.hero-sub strong{color:var(--white);font-weight:600}
+.hero-bullets{list-style:none;margin-bottom:36px}
+.hero-bullets li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;color:#dcdcdc}
+.hero-bullets li:last-child{border-bottom:0}
+.hero-bullets li svg{flex-shrink:0;margin-top:2px}
+.hero-cta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.trust{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+.trust .stars{color:var(--green);letter-spacing:2px;font-size:16px}
+
+/* hero visual */
+.hero-visual{position:relative;aspect-ratio:1/1;max-width:520px;margin-left:auto}
+.bot-card{position:absolute;inset:0;border-radius:24px;background:linear-gradient(160deg,#1a1a1a 0%,#0a0a0a 100%);border:1px solid var(--border-soft);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.bot-screen{position:absolute;inset:18px;border-radius:16px;background:#000;border:1px solid var(--border);padding:20px;display:flex;flex-direction:column}
+.bot-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.bot-header .left{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:500}
+.bot-header .live{display:flex;align-items:center;gap:6px;color:var(--green);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.bot-header .live .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+.bot-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 0}
+.stat{padding:14px;border:1px solid var(--border);border-radius:10px;background:#0a0a0a}
+.stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.stat .val{font-family:var(--display);font-size:24px;color:var(--gold);letter-spacing:1px}
+.stat .val.green{color:var(--green)}
+.bot-trades{flex:1;display:flex;flex-direction:column;gap:8px;padding-top:6px}
+.trade{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#080808}
+.trade .pair{font-weight:600;color:var(--white)}
+.trade .side{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.trade .side.buy{background:rgba(0,182,122,.15);color:var(--green)}
+.trade .side.sell{background:rgba(221,0,49,.15);color:var(--red)}
+.trade .pnl{font-weight:600;color:var(--green);font-family:'SF Mono',Menlo,monospace;font-size:13px}
+.trade .pnl.neg{color:var(--red)}
+.bot-footer{padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}
+.bot-footer .auto{display:inline-flex;align-items:center;gap:6px;color:var(--gold)}
+
+/* ---------- PRESS STRIP ---------- */
+.press{background:#000;border-block:1px solid var(--border);padding:30px 0}
+.press .label{text-align:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:18px}
+.press-logos{display:flex;align-items:center;justify-content:space-around;gap:30px;flex-wrap:wrap;opacity:.7}
+.press-logos div{font-family:var(--display);font-size:22px;letter-spacing:2px;color:#bbb;white-space:nowrap}
+
+/* ---------- SECTION GENERIC ---------- */
+section.block{padding:90px 0;position:relative}
+section.block.alt{background:var(--bg-soft)}
+.section-head{text-align:center;margin-bottom:56px;max-width:760px;margin-inline:auto}
+.section-head .eyebrow{margin-bottom:18px}
+.section-head h2{font-family:var(--display);font-size:clamp(34px,4.2vw,52px);color:var(--white);line-height:1.05;margin-bottom:16px}
+.section-head p{color:var(--muted);font-size:17px;line-height:1.6}
+
+/* ---------- FEATURES (4 reasons) ---------- */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feature{padding:32px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;transition:border-color .25s,transform .25s}
+.feature:hover{border-color:var(--gold);transform:translateY(-4px)}
+.feature .icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(216,192,122,.18),rgba(216,192,122,.05));display:grid;place-items:center;color:var(--gold);margin-bottom:18px;border:1px solid rgba(216,192,122,.25)}
+.feature h3{font-family:var(--display);font-size:22px;color:var(--white);margin-bottom:10px;letter-spacing:.5px}
+.feature p{color:var(--muted);font-size:14px;line-height:1.6}
+
+/* ---------- INTERVIEWS (testimonial grid) ---------- */
+.interviews{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.interview{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:#222;cursor:pointer;border:1px solid var(--border)}
+.interview .photo{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .4s}
+.interview:hover .photo{transform:scale(1.05)}
+.interview::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.3) 50%,transparent 100%)}
+.interview .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(216,192,122,.95);display:grid;place-items:center;z-index:2;transition:transform .2s}
+.interview:hover .play{transform:translate(-50%,-50%) scale(1.1)}
+.interview .play svg{margin-left:3px;color:#000}
+.interview .meta{position:absolute;bottom:14px;left:14px;right:14px;color:#fff;z-index:2}
+.interview .meta .name{font-weight:600;font-size:15px;margin-bottom:2px}
+.interview .meta .country{font-size:12px;color:#ccc;display:flex;align-items:center;gap:6px}
+
+/* ---------- HOW IT'S FREE ---------- */
+.howfree{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.howfree-img{aspect-ratio:4/5;border-radius:20px;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);border:1px solid var(--border-soft);position:relative;overflow:hidden;display:grid;place-items:center}
+.howfree-img .quote{padding:40px;text-align:center}
+.howfree-img .quote .open{font-family:var(--display);font-size:120px;line-height:.5;color:var(--gold);margin-bottom:20px}
+.howfree-img .quote p{font-size:18px;line-height:1.5;color:var(--white);font-style:italic}
+.howfree-img .quote .sig{margin-top:20px;font-size:13px;color:var(--gold);font-weight:600;font-style:normal;text-transform:uppercase;letter-spacing:2px}
+.howfree-text h2{font-family:var(--display);font-size:clamp(34px,4vw,52px);color:var(--white);line-height:1.05;margin-bottom:24px}
+.howfree-text p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:18px}
+.howfree-text p strong{color:var(--white)}
+
+/* ---------- AWARDS STRIP ---------- */
+.awards{padding:40px 0;background:#000;border-block:1px solid var(--border);overflow:hidden}
+.awards-track{display:flex;gap:60px;animation:scroll 30s linear infinite;width:max-content}
+.awards-track .item{display:flex;align-items:center;gap:12px;white-space:nowrap;color:var(--muted);font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:1px}
+.awards-track .item svg{color:var(--gold)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- JOIN GROUP (big CTA section) ---------- */
+.join-block{padding:90px 0;position:relative;overflow:hidden}
+.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.join-grid h2{font-family:var(--display);font-size:clamp(38px,4.6vw,58px);color:var(--white);line-height:1.02;margin-bottom:24px}
+.join-grid p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:24px}
+.join-grid p strong{color:var(--white)}
+.join-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0}
+.join-stats .stat-mini{padding:18px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;text-align:center}
+.join-stats .stat-mini .num{font-family:var(--display);font-size:32px;color:var(--gold);letter-spacing:1px;line-height:1}
+.join-stats .stat-mini .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:6px}
+
+.join-visual{position:relative;aspect-ratio:1/1;border-radius:24px;background:linear-gradient(160deg,#161616,#0a0a0a);border:1px solid var(--border-soft);overflow:hidden;padding:30px}
+.dashboard{height:100%;display:flex;flex-direction:column;gap:16px}
+.dash-row{display:flex;gap:16px}
+.dash-card{background:#0a0a0a;border:1px solid var(--border);border-radius:12px;padding:16px;flex:1}
+.dash-card .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.dash-card .val{font-family:var(--display);font-size:28px;color:var(--white);letter-spacing:1px}
+.dash-card .val.gold{color:var(--gold)}
+.dash-card .val.green{color:var(--green)}
+.dash-card .delta{font-size:12px;color:var(--green);margin-top:4px}
+.chart{height:140px;background:#0a0a0a;border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;overflow:hidden}
+.chart svg{width:100%;height:100%}
+.bot-status{margin-top:auto;padding:14px 16px;background:rgba(0,182,122,.08);border:1px solid rgba(0,182,122,.3);border-radius:10px;display:flex;align-items:center;justify-content:space-between;font-size:13px}
+.bot-status .left{display:flex;align-items:center;gap:10px;color:#fff}
+.bot-status .left .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+.bot-status .right{color:var(--green);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+
+/* ---------- COMPARISON ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;margin:0 auto}
+.compare-col{padding:36px 30px;border-radius:18px;border:1px solid var(--border);background:var(--bg-card)}
+.compare-col.win{border-color:var(--gold);background:linear-gradient(160deg,rgba(216,192,122,.06),var(--bg-card));position:relative}
+.compare-col.win::before{content:"Recommended";position:absolute;top:-12px;left:30px;background:var(--gold);color:#000;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:1px}
+.compare-col h3{font-family:var(--display);font-size:24px;color:var(--white);margin-bottom:24px;letter-spacing:.5px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.compare-col.win h3{color:var(--gold)}
+.compare-col ul{list-style:none}
+.compare-col li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;color:#ccc;font-size:15px;line-height:1.5}
+.compare-col li svg{flex-shrink:0;margin-top:3px}
+.compare-col.lose li svg{color:#5a5a5a}
+.compare-col.win li svg{color:var(--gold)}
+
+/* ---------- CERTIFICATION ---------- */
+.cert{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.cert-text h2{font-family:var(--display);font-size:clamp(34px,4vw,48px);color:var(--white);line-height:1.05;margin-bottom:20px}
+.cert-text p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:18px}
+.cert-img{aspect-ratio:4/3;border-radius:18px;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);border:1px solid var(--border-soft);position:relative;overflow:hidden;display:grid;place-items:center}
+.cert-badge{padding:40px;text-align:center}
+.cert-badge .ring{width:140px;height:140px;margin:0 auto 20px;border-radius:50%;background:radial-gradient(circle,rgba(216,192,122,.2),transparent 70%);display:grid;place-items:center;border:2px solid var(--gold)}
+.cert-badge .ring svg{color:var(--gold)}
+.cert-badge h4{font-family:var(--display);color:var(--white);font-size:22px;letter-spacing:1px;margin-bottom:8px}
+.cert-badge p{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:2px}
+
+/* ---------- ABOUT LAURENT ---------- */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}
+.about-photo{aspect-ratio:4/5;border-radius:20px;background:linear-gradient(135deg,#2a2a2a,#0a0a0a);border:1px solid var(--border-soft);overflow:hidden;position:relative;display:grid;place-items:center}
+.about-photo .initial{font-family:var(--display);font-size:200px;color:rgba(216,192,122,.2);letter-spacing:0}
+.about-photo::after{content:"Dubai · Nice";position:absolute;bottom:20px;left:20px;color:var(--gold);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;background:rgba(0,0,0,.6);padding:8px 14px;border-radius:999px;backdrop-filter:blur(8px)}
+.about-text h2{font-family:var(--display);font-size:clamp(34px,4vw,52px);color:var(--white);line-height:1.05;margin-bottom:24px}
+.about-text p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:16px}
+.about-text p strong{color:var(--white)}
+.about-bullets{list-style:none;margin-top:24px}
+.about-bullets li{display:flex;align-items:flex-start;gap:12px;padding:8px 0;color:#dcdcdc;font-size:15px}
+.about-bullets li svg{flex-shrink:0;margin-top:3px;color:var(--gold)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:820px;margin:0 auto}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:14px;background:var(--bg-card);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--gold)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 26px;text-align:left;font-size:17px;font-weight:600;color:var(--white);transition:color .2s}
+.faq-q:hover{color:var(--gold)}
+.faq-item.open .faq-q{color:var(--gold)}
+.faq-q .chev{width:24px;height:24px;flex-shrink:0;transition:transform .25s;color:var(--gold)}
+.faq-item.open .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 26px;color:var(--muted);font-size:15px;line-height:1.7}
+.faq-item.open .faq-a{max-height:600px;padding-bottom:24px}
+.faq-a strong{color:var(--white)}
+
+/* ---------- FINAL CTA ---------- */
+.final-cta{padding:100px 0;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,#0a0a0a 100%);border-block:1px solid var(--border);position:relative;overflow:hidden}
+.final-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(216,192,122,.08),transparent 60%);pointer-events:none}
+.final-cta h2{font-family:var(--display);font-size:clamp(42px,5.5vw,72px);color:var(--white);line-height:1;margin-bottom:24px}
+.final-cta p{color:var(--muted);font-size:18px;max-width:600px;margin:0 auto 36px;line-height:1.6}
+.final-cta .btn{padding:18px 36px;font-size:16px}
+
+/* ---------- FOOTER ---------- */
+footer.site{background:#000;padding:60px 0 24px;border-top:1px solid var(--border)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-grid h4{font-family:var(--display);color:var(--white);font-size:16px;letter-spacing:1.5px;margin-bottom:16px}
+.foot-grid p,.foot-grid a{color:var(--muted);font-size:14px;line-height:1.7;display:block;transition:color .15s}
+.foot-grid a:hover{color:var(--gold)}
+.foot-grid ul{list-style:none}
+.foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:12px}
+.risk{padding:16px 20px;background:#0a0a0a;border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:24px}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:980px){
+  .hero .container,.howfree,.join-grid,.cert,.about{grid-template-columns:1fr;gap:40px}
+  .hero-visual{max-width:420px;margin:0 auto}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .interviews{grid-template-columns:repeat(2,1fr)}
+  .compare{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .nav ul{display:none}
+  .nav-burger{display:block}
+  .join-stats{grid-template-columns:repeat(3,1fr)}
+  section.block{padding:64px 0}
+}
+@media (max-width:560px){
+  .features{grid-template-columns:1fr}
+  .interviews{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .topbar{font-size:11px}
+  .topbar .container{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="topbar">
+  <div class="container">
+    <span><span class="dot"></span>The bot is live and trading right now</span>
+    <span>·</span>
+    <span>12,500+ five-star reviews</span>
+    <span>·</span>
+    <span>80,000+ members worldwide</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="container nav">
+    <a href="#" class="logo">
+      <span class="mark">LB</span>
+      <span>Laurent Billionaire</span>
+    </a>
+    <ul>
+      <li><a href="#how-free">How it&rsquo;s free</a></li>
+      <li><a href="#the-bot">The bot</a></li>
+      <li><a href="#interviews">Testimonials</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#join" class="btn btn-gold">Start free today</a>
+    <button class="nav-burger" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <div class="eyebrow"><span class="pip"></span>AI-powered automated trading</div>
+      <h1 class="hero-title">
+        My trading bot makes you profitable <span class="gold">on autopilot.</span>
+      </h1>
+      <p class="hero-sub">
+        A <strong>completely automated trading experience</strong> built for beginners and pros alike. Set it up in 10 minutes, then let the bot trade for you, Monday to Friday. <strong>100% free</strong>, no subscriptions, no experience required.
+      </p>
+      <ul class="hero-bullets">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D8C07A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong style="color:#fff">Fully automated trading</strong> &mdash; the bot executes every trade for you, 24/5</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D8C07A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>AI-powered system trusted by <strong style="color:#fff">80,000+ members</strong> across 110 countries</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D8C07A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Verified track-record with full documentation</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D8C07A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Hands-free trading &mdash; <strong style="color:#fff">no manual decisions required</strong></span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D8C07A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>You keep <strong style="color:#fff">100% control of your funds</strong> &mdash; capital stays in your own broker account</span>
+        </li>
+      </ul>
+      <div class="hero-cta">
+        <a href="#join" class="btn btn-gold">
+          Get the bot for free
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="trust">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>Trustpilot &mdash; 4.7 / 5 (based on 417+ reviews)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOT VISUAL -->
+    <div class="hero-visual">
+      <div class="bot-card">
+        <div class="bot-screen">
+          <div class="bot-header">
+            <div class="left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D8C07A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+              <span>LAURENT BOT v3.2</span>
+            </div>
+            <div class="live"><span class="dot"></span>Live</div>
+          </div>
+          <div class="bot-stats">
+            <div class="stat"><div class="lbl">Today P/L</div><div class="val green">+$1,847</div></div>
+            <div class="stat"><div class="lbl">Win rate</div><div class="val">87%</div></div>
+          </div>
+          <div class="bot-trades">
+            <div class="trade"><span class="pair">XAU / USD</span><span class="side buy">Buy</span><span class="pnl">+$524.30</span></div>
+            <div class="trade"><span class="pair">EUR / USD</span><span class="side sell">Sell</span><span class="pnl">+$312.80</span></div>
+            <div class="trade"><span class="pair">GBP / JPY</span><span class="side buy">Buy</span><span class="pnl">+$891.20</span></div>
+            <div class="trade"><span class="pair">BTC / USD</span><span class="side sell">Sell</span><span class="pnl neg">&minus;$74.10</span></div>
+            <div class="trade"><span class="pair">USD / JPY</span><span class="side buy">Buy</span><span class="pnl">+$192.40</span></div>
+          </div>
+          <div class="bot-footer">
+            <span class="auto">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c2.5-2.5 3.75-5.5 3.75-9S14.5 5.5 12 3m0 18c-2.5-2.5-3.75-5.5-3.75-9S9.5 5.5 12 3"/></svg>
+              Trading on autopilot
+            </span>
+            <span>Updated 2s ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="press">
+  <div class="container">
+    <p class="label">As seen on</p>
+    <div class="press-logos">
+      <div>Yahoo Finance</div>
+      <div>Benzinga</div>
+      <div>USA Today</div>
+      <div>MSN</div>
+      <div>Investing.com</div>
+      <div>GeekWire</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 REASONS -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>Why traders choose the bot</div>
+      <h2>4 reasons to switch to <span class="gold">automated trading.</span></h2>
+      <p>An automated trading system that does the heavy lifting for you. No payment, no subscription, no learning curve.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+        </div>
+        <h3>Fully automated trading</h3>
+        <p>The bot opens, manages and closes every position for you. Zero manual input required &mdash; the most complete hands-free trading experience.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>100% free, forever</h3>
+        <p>No subscription. No upfront cost. No hidden fees. Our broker partners sponsor the service, so you never pay a cent for my trading bot.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <h3>AI-powered & 24/5</h3>
+        <p>AI-powered automated trading that analyses 50+ markets in real time. The bot never sleeps, never panics, never misses a setup.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Support 7/7</h3>
+        <p>My team is available every day to help you get set up and answer any question. Average reply time: under 15 minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEWS -->
+<section class="block alt" id="interviews">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>The proof is in the results</div>
+      <h2>Interviews with <span class="gold">successful members.</span></h2>
+      <p>80,000+ members across 110 countries use my trading bot every single day. Here are some of their stories.</p>
+    </div>
+    <div class="interviews">
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Jonny</div><div class="country">United Kingdom</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#2a2a3a,#0a0a1a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Maya</div><div class="country">Croatia</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#3a2a2a,#1a0a0a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Robert</div><div class="country">Norway</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#2a3a2a,#0a1a0a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Allen</div><div class="country">Australia</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#3a3a2a,#1a1a0a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Alexandra</div><div class="country">France</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#2a3a3a,#0a1a1a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Ricardo</div><div class="country">Portugal</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#3a2a3a,#1a0a1a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Shiraz</div><div class="country">India</div></div>
+      </div>
+      <div class="interview">
+        <div class="photo" style="background:linear-gradient(135deg,#2a2a2a,#0a0a0a)"></div>
+        <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        <div class="meta"><div class="name">Isabella</div><div class="country">Norway</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT'S FREE -->
+<section class="block" id="how-free">
+  <div class="container">
+    <div class="howfree">
+      <div class="howfree-img">
+        <div class="quote">
+          <div class="open">&ldquo;</div>
+          <p>I am sponsored by some of the world&rsquo;s largest trading platforms, which means I can offer my automated trading system 100% free of charge.</p>
+          <div class="sig">&mdash; Laurent Correia, Owner</div>
+        </div>
+      </div>
+      <div class="howfree-text">
+        <div class="eyebrow"><span class="pip"></span>How it&rsquo;s free</div>
+        <h2>Why my trading bot is <span class="gold">completely free.</span></h2>
+        <p>The automated trading system is <strong>funded through brokerage partnerships</strong>. There are no subscription fees and no upfront costs to access the bot.</p>
+        <p>This structure allows my team to focus on performance and long-term relationships rather than selling courses or charging monthly memberships.</p>
+        <p><strong>We do not manage client funds.</strong> All your capital remains in your own brokerage account at all times &mdash; you keep complete control.</p>
+        <a href="#join" class="btn btn-gold" style="margin-top:8px">Start free today</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS STRIP -->
+<section class="awards">
+  <div class="awards-track">
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Award-Winning Trading Bot</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Recognized leader in automated trading</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Trusted by 80,000+ members worldwide</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Built on transparency, data, real results</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>12,500+ five-star reviews</div>
+    <!-- duplicate for seamless scroll -->
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Award-Winning Trading Bot</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Recognized leader in automated trading</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Trusted by 80,000+ members worldwide</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>Built on transparency, data, real results</div>
+    <div class="item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>12,500+ five-star reviews</div>
+  </div>
+</section>
+
+<!-- JOIN GROUP (big visual CTA) -->
+<section class="join-block alt" id="the-bot">
+  <div class="container">
+    <div class="join-grid">
+      <div>
+        <div class="eyebrow"><span class="pip"></span>Join my free trading group</div>
+        <h2>Want the bot to <span class="gold">trade for you</span> every day?</h2>
+        <p>Over <strong>80,000 members from all over the world</strong> use my automated trading bot from Monday to Friday. You get access to one of the world&rsquo;s leading trading communities and a complete hands-free trading experience.</p>
+        <p>Press the button below and my team will personally help you start your journey today. As mentioned, <strong>it&rsquo;s 100% free.</strong></p>
+        <div class="join-stats">
+          <div class="stat-mini"><div class="num">80K+</div><div class="lbl">Members</div></div>
+          <div class="stat-mini"><div class="num">110</div><div class="lbl">Countries</div></div>
+          <div class="stat-mini"><div class="num">24/5</div><div class="lbl">Auto-trading</div></div>
+        </div>
+        <a href="#join" class="btn btn-gold">Start free today</a>
+      </div>
+
+      <div class="join-visual">
+        <div class="dashboard">
+          <div class="dash-row">
+            <div class="dash-card">
+              <div class="lbl">Account balance</div>
+              <div class="val gold">$24,891</div>
+              <div class="delta">+12.4% this month</div>
+            </div>
+            <div class="dash-card">
+              <div class="lbl">Bot trades today</div>
+              <div class="val">17</div>
+              <div class="delta">14 winners</div>
+            </div>
+          </div>
+          <div class="chart">
+            <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#D8C07A" stop-opacity=".4"/>
+                  <stop offset="100%" stop-color="#D8C07A" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,90 L20,85 L40,88 L60,75 L80,72 L100,78 L120,65 L140,58 L160,62 L180,48 L200,42 L220,46 L240,30 L260,28 L280,18 L300,15 L300,120 L0,120 Z" fill="url(#grad)"/>
+              <path d="M0,90 L20,85 L40,88 L60,75 L80,72 L100,78 L120,65 L140,58 L160,62 L180,48 L200,42 L220,46 L240,30 L260,28 L280,18 L300,15" fill="none" stroke="#D8C07A" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="bot-status">
+            <div class="left"><span class="dot"></span>Bot is active &mdash; trading on autopilot</div>
+            <div class="right">+2.1% today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>Bot vs manual</div>
+      <h2>Why <span class="gold">trading on autopilot</span> beats manual trading.</h2>
+      <p>A side-by-side look at why a completely automated trading experience changes everything.</p>
+    </div>
+    <div class="compare">
+      <div class="compare-col win">
+        <h3>Trading with my bot</h3>
+        <ul>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Fully automated trade execution &mdash; the bot handles everything
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            AI-powered automated trading analysis 24/5
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            10 minutes setup, then completely hands-free
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Pre-defined risk framework, no emotional decisions
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No prior trading experience required
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Daily live signals + automated execution
+          </li>
+        </ul>
+      </div>
+      <div class="compare-col lose">
+        <h3>Trading manually yourself</h3>
+        <ul>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Manual order placement, every single trade
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Personal market analysis required at all hours
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Time-intensive learning curve (months or years)
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Self-managed risk decisions under stress
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Ongoing research, monitoring, screen time
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Vulnerable to fear, greed, and missed opportunities
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATION -->
+<section class="block alt">
+  <div class="container">
+    <div class="cert">
+      <div class="cert-text">
+        <div class="eyebrow"><span class="pip"></span>Certified</div>
+        <h2>As one of the only ones in the industry, my bot is <span class="gold">officially certified.</span></h2>
+        <p>I&rsquo;m certified to provide this automated trading system to my members. Every trade is documented, every strategy is verified, every result is transparent.</p>
+        <p>Unlike the influencers selling you dreams &mdash; my team and I trade <strong>every single day, with real money, on the same setups the bot uses for you.</strong></p>
+        <a href="#join" class="btn btn-ghost">See the diploma</a>
+      </div>
+      <div class="cert-img">
+        <div class="cert-badge">
+          <div class="ring">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <h4>Certified Trader</h4>
+          <p>Verified track-record</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT LAURENT -->
+<section class="block" id="about">
+  <div class="container">
+    <div class="about">
+      <div class="about-photo">
+        <div class="initial">LB</div>
+      </div>
+      <div class="about-text">
+        <div class="eyebrow"><span class="pip"></span>Who is Laurent?</div>
+        <h2>I&rsquo;m the trader behind <span class="gold">your trading bot.</span></h2>
+        <p>I&rsquo;m <strong>Laurent Correia</strong>, also known as Billionaire. A 29-year-old French-Portuguese trader from Nice, now living between Dubai and France with my wife and four kids.</p>
+        <p>I left school early, dove into trading, and turned it into everything. Today I run one of the largest copy-trading communities in the world &mdash; and I built my automated trading system so that anyone, anywhere, can get the same edge I do, completely hands-free.</p>
+        <ul class="about-bullets">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Multi-millionaire by age 25, self-made
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            80,000+ members on Telegram across 110 countries
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Built my bot to give beginners a real shot at the markets
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Owner of Billionaire Yacht restaurant, Dubai
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block alt" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pip"></span>FAQ</div>
+      <h2>Frequently asked <span class="gold">questions.</span></h2>
+      <p>Everything you need to know before getting started with my trading bot.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">What if I know nothing about trading?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><p>Don&rsquo;t worry, you don&rsquo;t need any experience. <strong>My trading bot does everything for you</strong> &mdash; from analysis to execution. That&rsquo;s the entire point of a completely automated trading experience: you can profit from day one, even with zero knowledge of the markets. <strong>95% of our members had never traded before joining.</strong></p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Why is it free?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><p>It&rsquo;s 100% free to access the bot. <strong>My sponsor pays for your membership so you don&rsquo;t have to.</strong> We work with one of the world&rsquo;s leading award-winning trading platforms. As long as you use their platform, the entire automated trading system is provided completely free of charge. Win-win.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I get started, and what do I need?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><p>Press the &ldquo;Start free today&rdquo; button. You&rsquo;ll be connected to my team and we&rsquo;ll walk you through the setup step by step. <strong>It takes no more than 10 minutes.</strong> After that, you only need 15-20 minutes a day to check on your account. Everything is 100% free &mdash; all you need is the capital you want to trade with.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does the bot really trade completely on its own?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><p>Yes. <strong>Fully automated trading</strong> means exactly that: once the bot is connected to your broker account, it opens, manages and closes positions on its own, 24/5. You don&rsquo;t need to be at your screen, you don&rsquo;t need to make decisions, you don&rsquo;t need to know how to read a chart. It&rsquo;s the most hands-free trading experience available.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is the AI-powered automated trading safe?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><p>The bot operates within a strict risk framework: position sizing, stop-losses and maximum daily exposure are all defined in advance. <strong>We never manage your funds</strong> &mdash; your capital stays in your own broker account, in your name, at all times. Trading always carries risk, so only trade what you can afford to lose.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I want to learn how to trade myself?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><p>Many members start by letting the bot trade for them, then learn over time. You&rsquo;ll get a free <strong>5-hour video course</strong>, a Trading Masterclass and access to a community of 80,000+ traders worldwide. Plenty of our members started on full autopilot and went on to become independent traders themselves.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="join">
+  <div class="container">
+    <h2>Let the bot <span class="gold red-underline">do the work</span> for you.</h2>
+    <p>Join 80,000+ traders who use my automated trading system every day. Setup in 10 minutes. 100% free, forever.</p>
+    <a href="#" class="btn btn-gold">
+      Start free today
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="container">
+    <div class="risk">
+      <strong style="color:#fff">Risk warning:</strong> Trading financial instruments involves risk and can result in losses. Past performance is not indicative of future results. The automated trading system is provided for informational purposes only. Make sure you are prepared to accept financial risk before using my trading bot &mdash; we are not responsible for any losses to your account.
+    </div>
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px">
+          <span class="mark">LB</span>
+          <span>Laurent Billionaire</span>
+        </div>
+        <p>The free automated trading bot trusted by 80,000+ members worldwide. AI-powered, fully automated, completely hands-free.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#how-free">How it&rsquo;s free</a></li>
+          <li><a href="#the-bot">The bot</a></li>
+          <li><a href="#interviews">Testimonials</a></li>
+          <li><a href="#about">About Laurent</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Trading masterclass</a></li>
+          <li><a href="#">Crypto masterclass</a></li>
+          <li><a href="#">5-hour video course</a></li>
+          <li><a href="#">Community area</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; <span id="yr">2026</span> Laurent Billionaire &mdash; All rights reserved.</div>
+      <div><a href="#">Legal notice</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.parentElement.classList.toggle('open');
+  });
+});
+// Open first FAQ by default
+document.querySelector('.faq-item')?.classList.add('open');
+// Year
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
