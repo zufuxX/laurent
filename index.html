@@ -50,17 +50,15 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 /* ---------- HEADER ---------- */
 header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-soft)}
-.nav{display:flex;align-items:center;height:80px;gap:40px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--text);margin-right:auto;flex-shrink:0}
-.nav > .btn{margin-left:8px;flex-shrink:0}
-.nav ul{flex-shrink:0}
+.nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--text)}
 .logo .mark{width:44px;height:44px;display:grid;place-items:center;background:transparent;flex-shrink:0}
 .logo .mark img{width:44px;height:44px;display:block;object-fit:contain}
 .nav ul{list-style:none;display:flex;gap:32px;align-items:center}
 .nav ul a{color:var(--text);font-size:15px;font-weight:600;transition:color .2s}
 .nav ul a:hover{color:var(--primary)}
 .nav-burger{display:none;font-size:26px;background:transparent;color:var(--text);padding:6px 10px;border-radius:8px;cursor:pointer}
-.mobile-menu{position:fixed;inset:0;background:rgba(7,15,30,.96);backdrop-filter:blur(12px);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:80px 24px 40px}
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;background:rgba(7,15,30,.96);backdrop-filter:blur(12px);z-index:999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:80px 24px 40px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:#fff;font-size:22px;font-weight:700;padding:14px 24px;text-align:center}
 .mobile-menu a:hover{color:var(--primary);background:#fff;border-radius:10px}
@@ -411,16 +409,17 @@ footer.site{background:#fff;padding:64px 0 28px;border-top:1px solid var(--borde
     <a href="https://t.me/therealbillio" class="btn btn-primary">Start free today</a>
     <button class="nav-burger" aria-label="Menu" id="navBurger">&#9776;</button>
   </div>
-  <!-- Mobile menu overlay -->
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
-    <button class="close" aria-label="Close menu" id="mobileMenuClose">&times;</button>
-    <a href="#how-free">How it&rsquo;s free?</a>
-    <a href="#interviews">Interviews</a>
-    <a href="#about">About</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://t.me/therealbillio" class="cta">Start free today</a>
-  </div>
 </header>
+
+<!-- Mobile menu overlay (outside header so backdrop-filter doesn't trap it) -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
+  <button class="close" aria-label="Close menu" id="mobileMenuClose">&times;</button>
+  <a href="#how-free">How it&rsquo;s free?</a>
+  <a href="#interviews">Interviews</a>
+  <a href="#about">About</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://t.me/therealbillio" class="cta">Start free today</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
